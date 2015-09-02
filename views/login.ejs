@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="stylesheets/bootstrap.min.css?ver=<%=cache['bootstrap.min.css']%>"/>
+    <style>
+        body{
+            font-family: serif;
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="navbar navbar-default navbar-static-top">
+        <div class="navbar-header">
+            <a href="#" class="navbar-brand">
+                Contact Management System
+            </a>
+        </div>
+    </div>
+    <div class="alert alert-danger">Error  :<%= error%></div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="row well well-sm">
+                <div class="col-md-6">
+                    <form method="post" action="/login">
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input type="text" class="form-control" name="username">
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" class="form-control" name="password">
+                        </div>
+                        <button type="submit" class="btn btn-default">Login</button>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <form method="post" action="/signup">
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input type="text" class="form-control" name="name">
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" class="form-control" name="email">
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" class="form-control" name="password">
+                        </div>
+                        <button type="submit" class="btn btn-default">signup</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="javascripts/common/jquery-1.7.2.min.js?ver=<%=cache['jquery-1.7.2.min.js']%>"></script>
+<script src="javascripts/common/angular.min.js?ver=<%=cache['angular.min.js']%>"></script>
+<script src="javascripts/common/angular-ui-router.js?ver=<%=cache['angular-ui-router']%>"></script>
+<script src="javascripts/common/bootstrap.min.js?ver=<%=cache['bootstrap.min.js']%>"></script>
+<script src="javascripts/common/ui-bootstrap-tpls-0.11.2.min.js?ver=<%=cache['config.js']%>"></script>
+</body>
+</html>

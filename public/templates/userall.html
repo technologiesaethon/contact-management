@@ -1,0 +1,26 @@
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Create</th>
+        <th>Update</th>
+        <th>Delete</th>
+        </thead>
+        <tbody>
+        <tr ng-repeat="user in users">
+
+            <td>{{user.name}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.role}}</td>
+            <td><input type="checkbox" ng-model="user.create" ng-change="change(user)"/></td>
+
+            <td><input type="checkbox" ng-model="user.update" ng-change="change(user)"/></td>
+
+            <td><input type="checkbox" ng-model="user.delete" ng-change="change(user)"/></td>
+
+        </tr>
+        </tbody>
+    </table>
+</div>

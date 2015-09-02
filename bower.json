@@ -1,0 +1,9 @@
+{
+  "name": "contact-management",
+  "description": "Contact management system, just for demo",
+  "version": "1.0.0",
+  "dependencies": {
+    "angular-bootstrap": "~0.13.0",
+    "angular-ui-router": "~0.2.15"
+  }
+}

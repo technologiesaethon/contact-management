@@ -1,0 +1,9 @@
+{
+
+        "port":4040,
+        "mongo":{
+            "uri":"mongodb://username:password@localhost:27017/contact-management"
+
+        }
+
+}

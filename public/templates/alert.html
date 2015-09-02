@@ -1,0 +1,12 @@
+<div class="modal-header">
+    Alert
+</div>
+<div class="modal-body">
+   <ul class="list-unstyled">
+      <li ng-repeat="alert in alerts"><span class="glyphicon glyphicon-warning-sign"></span>&nbsp;<code>
+         {{alert}}</code></li>
+   </ul>
+</div>
+<div class="modal-footer">
+ <button type="button" class="btn btn-default" ng-click="ok()">Ok</button>
+</div>

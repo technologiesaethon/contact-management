@@ -1,0 +1,13 @@
+{
+
+        "port":5050,
+         "mongodb": {
+             "db": "contact-management",
+             "host": "ds031912.mongolab.com",
+             "port": 31912,
+             "username": "admin",
+             "password": "admin"
+
+         }
+
+}

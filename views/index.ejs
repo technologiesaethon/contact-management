@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html ng-app="contactApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="stylesheets/bootstrap.min.css?ver=<%=cache['bootstrap.min.css']%>"/>
+    <style>
+        body{
+            font-family: serif;
+        }
+    </style>
+</head>
+<body ng-controller="MainCtrl" ng-cloak>
+<div class="container-fluid">
+    <div class="navbar navbar-default navbar-static-top">
+        <div class="navbar-header">
+            <a href="#" class="navbar-brand">
+                Contact Management System
+            </a>
+        </div>
+        <div><ng-clock>
+            <button type="button"   class="btn btn-link navbar-btn navbar-right" ng-click="logout()" ng-show="loggedUser">LOGOUT</button>
+            <p class="navbar-text navbar-right" ng-show="loggedUser">Welcome {{loggedUser.name}} </p>
+            <button type="button" class="btn btn-link navbar-btn navbar-right" ng-click="login()" ng-hide="loggedUser">LOGIN</button>
+            <button type="button" class="btn btn-link navbar-btn navbar-right" ng-click="signup()" ng-hide="loggedUser">SIGNUP</button>
+            </ng-clock></div>
+    </div>
+    <div class="ui-view">
+        <img src="images/Global%20MarketingIAV.jpg" height="550px;" width="100%"/>
+    </div>
+</div>
+
+<script src="javascripts/common/jquery-1.7.2.min.js?ver=<%=cache['jquery-1.7.2.min.js']%>"></script>
+<script src="components/angular/angular.min.js?ver=<%=cache['angular.min.js']%>"></script>
+<script src="components/angular-ui-router/release/angular-ui-router.min.js?ver=<%=cache['angular-ui-router.min.js']%>"></script>
+<script src="components/angular-bootstrap/ui-bootstrap-tpls.min.js?ver=<%=cache['ui-bootstrap-tpls.min.js']%>"></script>
+<script src="javascripts/common/bootstrap.min.js?ver=<%=cache['bootstrap.min.js']%>"></script>
+<script>
+    var contactApp=angular.module('contactApp',['ui.router','ui.bootstrap']);
+    angular.module('contactApp').config(function($stateProvider,$urlRouterProvider,$httpProvider){
+
+        $stateProvider.state('home',{
+            url:'/home',
+            templateUrl:'templates/home.html?ver=<%=cache['home.html']%>'
+        }).state('admin',{
+            url:'^/admin',
+            abstract:true,
+            controller:'AdminCtrl',
+            templateUrl:'templates/leftrightview.html?ver=<%=cache['leftrightview']%>'
+        }).state('admin.alluser',{
+            url:'^/alluser',
+            views:{
+                leftbar:{templateUrl:"templates/adminleftbar.html?ver=<%=cache['adminleftbar.html']%>"},
+                rightbar:{templateUrl:'templates/userall.html?ver=<%=cache['userall.html']%>'}
+            }
+        }).state('contact',{
+            url:'^/contact',
+            abstract:true,
+            controller:'ContactCtrl',
+            templateUrl:'templates/leftrightview.html?ver=<%=cache['leftrightview.html']%>'
+        }).state('contact.all',{
+            url:'^/allcontact',
+            views:{
+                leftbar:{templateUrl:"templates/leftbar.html?ver=<%=cache['leftbar.html']%>"},
+                rightbar:{templateUrl:'templates/contactall.html?ver=<%=cache['contactall.html']%>'}
+            }
+        }).state('contact.edit',{
+            url:'^/edit',
+            views:{
+                leftbar:{templateUrl:"templates/leftbar.html?ver=<%=cache['leftbar.html']%>"},
+                rightbar:{templateUrl:'templates/contactedit.html?ver=<%=cache['contactedit.html']%>'}
+            }
+        }).state('contact.create',{
+            url:'^/create',
+            views:{
+                leftbar:{templateUrl:"templates/leftbar.html?ver=<%=cache['leftbar.html']%>"},
+                rightbar:{templateUrl:'templates/contactedit.html?ver=<%=cache['contactedit.html']%>'}
+            }
+        })
+
+        $httpProvider.interceptors.push(function($window){
+            var csrfToken=null;
+            return {
+                request:function(config){
+                    console.log('>>>>>>>>>>>',config.url,'csrf ',csrfToken);
+                    var home = csrfToken ? null:config.url !== '/login' && config.url.indexOf('html') === -1 && config.url !=='/signup'? 'home':null;
+                    if(home){
+                        sessionStorage.removeItem('loggedUser');
+                        $window.open('index','_self');
+                    }
+                    config.headers['x-csrftoken']=csrfToken;
+                    return config;
+                },
+                response:function(response){
+                    if(response.data && response.data.csrftoken){
+                        csrfToken=response.data.csrftoken;
+                    }
+                    return response;
+                }
+            }
+        })
+
+    })
+</script>
+<script src="javascripts/scripts.js?ver=<%=cache['scripts.js']%>"></script>
+</body>
+</html>

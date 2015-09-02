@@ -1,0 +1,48 @@
+<div class="panel panel-default">
+    <div class="panel-heading text-center">
+        Enter Details
+    </div>
+    <div class="panel-body">
+
+        <form name="contactForm" novalidate>
+            <div class="form-group">
+                <label>First Name<span class="label label-danger" ng-show="contactForm.firstname.$dirty && contactForm.firstname.$error.required">Mandatory</span> </label>
+                <div class="input-group">
+                    <span class="input-group-addon">@</span>
+                    <input type="text" name="firstname" ng-model="modifiedObject.first" class="form-control" required/>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label>Last Name<span class="label label-danger" ng-show="contactForm.lastname.$dirty && contactForm.lastname.$error.required">Mandatory</span></label>
+                <div class="input-group">
+                    <span class="input-group-addon">@</span>
+                    <input type="text" name="lastname" ng-model="modifiedObject.last" class="form-control" required/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Email
+                    <span class="label label-danger" ng-show="contactForm.email.$dirty && contactForm.email.$error.required">Mandatory</span>
+                    <span class="label label-danger" ng-show="contactForm.email.$dirty && contactForm.email.$error.email">Valid Email</span>
+                </label>
+                <div class="input-group">
+                    <span class="input-group-addon">@</span>
+                    <input type="email" name="email" ng-model="modifiedObject.email" class="form-control" required/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Phone <span class="label label-danger" ng-show="contactForm.phone.$dirty && contactForm.phone.$error.required">Mandatory</span></label>
+                <div class="input-group">
+                    <span class="input-group-addon">@</span>
+                    <input type="text" name="phone" ng-model="modifiedObject.phone" class="form-control" required="true"/>
+                </div>
+            </div>
+             <div class="pull-right btn-group">
+                <button type="button" class="btn btn-default" ng-click="save()" ng-disabled="contactForm.$invalid"> Save</button>
+
+                <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+             </div>
+        </form>
+    </div>
+</div>
